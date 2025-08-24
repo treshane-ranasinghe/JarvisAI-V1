@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pycache/
+
+# Virtual Environment
+venv/
+.env
+
+# Packages
+*.egg-info/
+dist/
+build/
+
+# Audio / model outputs
+*.wav
+jarvis_tts_*.wav
+jarvis_input.wav
+
+# Whisper / TTS / other model downloads
+*.pt
+*.model
+*.bin
+
+# macOS system files
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+*.log
