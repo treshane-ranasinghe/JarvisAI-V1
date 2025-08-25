@@ -10,9 +10,7 @@ import whisper
 import pyttsx3
 from dotenv import load_dotenv
 
-# ---------------------------
-# Config
-# ---------------------------
+
 class Config:
     def __init__(self):
         load_dotenv()
@@ -27,9 +25,7 @@ class Config:
         self.channels = 1
         self.record_seconds = 8.0
 
-# ---------------------------
-# Audio helpers
-# ---------------------------
+
 def record_audio(seconds, sample_rate, channels):
     print(f"🎙️ Recording for {seconds:.1f}s... (speak now)")
     sd.default.samplerate = sample_rate
@@ -43,17 +39,13 @@ def save_wav(audio, sample_rate, path):
     wav_write(path, sample_rate, audio)
     return path
 
-# ---------------------------
-# Whisper (STT)
-# ---------------------------
+
 def transcribe_audio(path):
     model = whisper.load_model("base")
     result = model.transcribe(path)
     return result["text"].strip()
 
-# ---------------------------
-# OpenRouter (DeepSeek LLM)
-# ---------------------------
+
 def ask_openrouter(user_text, cfg: Config):
     headers = {
         "Authorization": f"Bearer {cfg.api_key}",
@@ -71,17 +63,12 @@ def ask_openrouter(user_text, cfg: Config):
     result = resp.json()
     return result["choices"][0]["message"]["content"].strip()
 
-# ---------------------------
-# pyttsx3 TTS
-# ---------------------------
+
 engine = pyttsx3.init()
 def speak_text(text):
     engine.say(text)
     engine.runAndWait()
 
-# ---------------------------
-# Main loop
-# ---------------------------
 def main():
     cfg = Config()
     parser = argparse.ArgumentParser(description="Jarvis v1 — DeepSeek edition")
